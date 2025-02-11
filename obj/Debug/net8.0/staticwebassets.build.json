@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "Blkg3EaQFiG4wbB7OiKq2s5dmND+fsxfMxOunMW0nLk=",
+  "Source": "CrudUserAPI",
+  "BasePath": "_content/CrudUserAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
