@@ -5,10 +5,8 @@ namespace CrudUserAPI.Data
 {
     public class APIContext : DbContext
     {
-        public DbSet<User> Usuarios { get; set; } = null!;
-        public APIContext(DbContextOptions<APIContext> options) : base(options)
-        {
-        }
+        public APIContext(DbContextOptions<APIContext> options) : base(options) { }
 
+        public DbSet<User> Users { get; set; } = null!; // ✅ Asegurar que se llame Users
     }
 }

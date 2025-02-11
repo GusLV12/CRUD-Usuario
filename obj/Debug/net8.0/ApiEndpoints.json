@@ -1,7 +1,7 @@
 [
   {
     "ContainingType": "CrudUserAPI.Controllers.UserController",
-    "Method": "GetUsuarios",
+    "Method": "GetUsers",
     "RelativePath": "api/User",
     "HttpMethod": "GET",
     "IsController": true,
@@ -21,14 +21,14 @@
   },
   {
     "ContainingType": "CrudUserAPI.Controllers.UserController",
-    "Method": "PostUsuario",
+    "Method": "PostUser",
     "RelativePath": "api/User",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "usuario",
+        "Name": "user",
         "Type": "CrudUserAPI.Models.User",
         "IsRequired": true
       }
@@ -47,7 +47,7 @@
   },
   {
     "ContainingType": "CrudUserAPI.Controllers.UserController",
-    "Method": "GetUsuario",
+    "Method": "GetUser",
     "RelativePath": "api/User/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -73,7 +73,7 @@
   },
   {
     "ContainingType": "CrudUserAPI.Controllers.UserController",
-    "Method": "PutUsuario",
+    "Method": "PutUser",
     "RelativePath": "api/User/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
@@ -85,7 +85,7 @@
         "IsRequired": true
       },
       {
-        "Name": "usuarioActualizado",
+        "Name": "updatedUser",
         "Type": "CrudUserAPI.Models.User",
         "IsRequired": true
       }
@@ -94,7 +94,7 @@
   },
   {
     "ContainingType": "CrudUserAPI.Controllers.UserController",
-    "Method": "DeleteUsuario",
+    "Method": "DeleteUser",
     "RelativePath": "api/User/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,

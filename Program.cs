@@ -1,27 +1,28 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using CrudUserAPI.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 // Configurar Entity Framework Core con InMemory
 builder.Services.AddDbContext<APIContext>(options =>
     options.UseInMemoryDatabase("UsuariosDb"));
 
+// Configurar CORS para permitir cualquier origen
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll",
-        policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+        policy => policy.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
 });
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Habilitar Swagger solo en desarrollo
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -29,6 +30,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// 📌 **Aplicar CORS antes de Authorization**
+app.UseCors("AllowAll");
 
 app.UseAuthorization();
 

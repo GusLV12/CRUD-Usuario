@@ -18,57 +18,55 @@ namespace CrudUserAPI.Controllers
 
         // GET: api/User
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsuarios()
+        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            return await _context.Usuarios.ToListAsync();
+            return await _context.Users.ToListAsync(); // ✅ Cambio de _context.Usuarios a _context.Users
         }
 
         // GET: api/User/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUsuario(int id)
+        public async Task<ActionResult<User>> GetUser(int id)
         {
-            var usuario = await _context.Usuarios.FindAsync(id);
+            var user = await _context.Users.FindAsync(id);
 
-            if (usuario == null)
+            if (user == null)
             {
                 return NotFound(new { message = "Usuario no encontrado." });
             }
 
-            return usuario;
+            return user;
         }
 
         // POST: api/User
         [HttpPost]
-        public async Task<ActionResult<User>> PostUsuario(User usuario)
+        public async Task<ActionResult<User>> PostUser(User user)
         {
-            // Verificar si el correo ya está registrado
-            if (await _context.Usuarios.AnyAsync(u => u.CorreoElectronico == usuario.CorreoElectronico))
+            if (await _context.Users.AnyAsync(u => u.CorreoElectronico == user.CorreoElectronico))
             {
                 return Conflict(new { message = "El correo electrónico ya está registrado." });
             }
 
-            _context.Usuarios.Add(usuario);
+            _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetUsuario), new { id = usuario.Id }, usuario);
+            return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user);
         }
 
         // PUT: api/User/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUsuario(int id, User usuarioActualizado)
+        public async Task<IActionResult> PutUser(int id, User updatedUser)
         {
-            var usuarioExistente = await _context.Usuarios.FindAsync(id);
+            var existingUser = await _context.Users.FindAsync(id);
 
-            if (usuarioExistente == null)
+            if (existingUser == null)
             {
                 return NotFound(new { message = "Usuario no encontrado." });
             }
 
-            // Actualizar solo los campos necesarios
-            usuarioExistente.Nombre = usuarioActualizado.Nombre;
-            usuarioExistente.CorreoElectronico = usuarioActualizado.CorreoElectronico;
-            usuarioExistente.Telefono = usuarioActualizado.Telefono;
-            usuarioExistente.Activo = usuarioActualizado.Activo;
+            existingUser.Nombre = updatedUser.Nombre;
+            existingUser.CorreoElectronico = updatedUser.CorreoElectronico;
+            existingUser.Telefono = updatedUser.Telefono;
+            existingUser.Activo = updatedUser.Activo;
 
             await _context.SaveChangesAsync();
 
@@ -77,15 +75,15 @@ namespace CrudUserAPI.Controllers
 
         // DELETE: api/User/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUsuario(int id)
+        public async Task<IActionResult> DeleteUser(int id)
         {
-            var usuario = await _context.Usuarios.FindAsync(id);
-            if (usuario == null)
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
             {
                 return NotFound(new { message = "El usuario no existe." });
             }
 
-            _context.Usuarios.Remove(usuario);
+            _context.Users.Remove(user);
             await _context.SaveChangesAsync();
 
             return Ok(new { message = "Usuario eliminado correctamente." });
