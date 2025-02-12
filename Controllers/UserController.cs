@@ -20,10 +20,10 @@ namespace CrudUserAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            return await _context.Users.ToListAsync(); // ✅ Cambio de _context.Usuarios a _context.Users
+            return await _context.Users.ToListAsync();
         }
 
-        // GET: api/User/5
+        // GET: api/User/:id
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
@@ -52,7 +52,7 @@ namespace CrudUserAPI.Controllers
             return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user);
         }
 
-        // PUT: api/User/5
+        // PUT: api/User/:id
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(int id, User updatedUser)
         {
@@ -73,7 +73,7 @@ namespace CrudUserAPI.Controllers
             return Ok(new { message = "Usuario actualizado correctamente." });
         }
 
-        // DELETE: api/User/5
+        // DELETE: api/User/:id
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {

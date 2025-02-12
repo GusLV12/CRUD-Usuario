@@ -22,12 +22,8 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Habilitar Swagger solo en desarrollo
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
